@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovest Hub - Submit Proposal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <div class="header-left">
+                <a href="proposals.html" class="home-icon">
+                    <i class="fas fa-home"></i>
+                </a>
+                <div>
+                    <h1 class="company-name">INNOVEST HUB</h1>
+                    <p class="company-tagline">Innovate • Invest • Transform</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <a href="profile.html" class="profile-icon">
+                    <i class="fas fa-user-circle"></i>
+                </a>
+                <button class="btn logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="submit-proposal-container">
+        <h2>Submit Your Proposal</h2>
+        <form id="proposalForm" class="proposal-form">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" id="title" required>
+            </div>
+            <div class="form-group">
+                <label for="field">Field/Topic</label>
+                <input type="text" id="field" required>
+            </div>
+            <div class="form-group">
+                <label for="summary">Summary</label>
+                <textarea id="summary" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="impact">Impact</label>
+                <textarea id="impact" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="funding">Expected Funding ($)</label>
+                <input type="number" id="funding" required>
+            </div>
+            <button type="submit" class="btn">Submit Proposal</button>
+        </form>
+    </main>
+
+    <script src="submit-proposal.js"></script>
+    <script src="common.js"></script>
+</body>
+</html> 

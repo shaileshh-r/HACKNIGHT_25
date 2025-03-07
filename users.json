@@ -1,0 +1,145 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john@example.com",
+      "password": "password123",
+      "role": "innovator",
+      "bio": "Passionate about healthcare innovation and AI technology. Experienced in developing medical software solutions."
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "email": "jane@example.com",
+      "password": "password123",
+      "role": "innovator",
+      "bio": "Environmental engineer focused on sustainable energy solutions. Led multiple successful green energy projects."
+    },
+    {
+      "id": 3,
+      "name": "Mike Johnson",
+      "email": "mike@example.com",
+      "password": "password123",
+      "role": "innovator",
+      "bio": "Agricultural technology specialist with expertise in IoT and smart farming solutions."
+    },
+    {
+      "id": 4,
+      "name": "Sarah Wilson",
+      "email": "sarah@example.com",
+      "password": "password123",
+      "role": "innovator",
+      "bio": "EdTech innovator passionate about making education more accessible through virtual reality."
+    },
+    {
+      "id": 5,
+      "name": "Tom Brown",
+      "email": "tom@example.com",
+      "password": "password123",
+      "role": "innovator",
+      "bio": "Environmental scientist dedicated to developing smart waste management solutions."
+    },
+    {
+      "name": "abc",
+      "email": "abc2@gmail.com",
+      "password": "123",
+      "role": "innovator",
+      "bio": "",
+      "organization": "VIT C",
+      "designation": "PRO VICE CHANCELLOR",
+      "location": "CHENNAI",
+      "expertise": [
+        "blockchain",
+        "web development"
+      ],
+      "linkedin": null
+    },
+    {
+      "name": "abc",
+      "email": "abc@gmail.com",
+      "password": "123",
+      "role": "investor",
+      "bio": "nothing much YET",
+      "organization": "VIT C",
+      "designation": "PRO VICE CHANCELLOR",
+      "location": "CHENNAI",
+      "expertise": [
+        "blockchain",
+        "web development"
+      ],
+      "linkedin": null,
+      "investmentFocus": [
+        "DevOps",
+        "AI&DS"
+      ],
+      "investmentRange": "$100k - $ 5m"
+    },
+    {
+      "name": "abc1",
+      "email": "abc1@gmail.com",
+      "password": "123",
+      "role": "innovator",
+      "organization": "VITC",
+      "designation": "MD",
+      "location": "CHENNAI",
+      "expertise": [
+        "Blockchain"
+      ],
+      "bio": "idk",
+      "linkedin": null,
+      "joinedDate": "2025-03-06T21:26:05.425Z"
+    },
+    {
+      "name": "abc3",
+      "email": "abc3@gmail.com",
+      "password": "123",
+      "role": "investor",
+      "organization": "VITC",
+      "designation": "MD",
+      "location": "CHENNAI",
+      "investmentFocus": [
+        "DevOps"
+      ],
+      "investmentRange": "$5000-$10000",
+      "bio": "i pay for shit",
+      "linkedin": null,
+      "joinedDate": "2025-03-06T22:16:04.185Z",
+      "investments": []
+    },
+    {
+      "id": "27INN2831",
+      "name": "abc1",
+      "email": "abc11@gmail.com",
+      "password": "123",
+      "role": "innovator",
+      "organization": "VITC",
+      "designation": "MD",
+      "location": "CHENNAI",
+      "expertise": [
+        "Blockchain"
+      ],
+      "bio": "idk",
+      "linkedin": null,
+      "joinedDate": "2025-03-06T22:31:41.632Z"
+    },
+    {
+      "id": "95INV2282",
+      "name": "abc22",
+      "email": "abc22@gmail.com",
+      "password": "123",
+      "role": "investor",
+      "organization": "VITC",
+      "designation": "MD",
+      "location": "CHENNAI",
+      "investmentFocus": [
+        "DevOps"
+      ],
+      "investmentRange": "$5000-$10000",
+      "bio": "idk i pay",
+      "linkedin": null,
+      "joinedDate": "2025-03-06T22:34:11.421Z",
+      "investments": []
+    }
+  ]
+}
