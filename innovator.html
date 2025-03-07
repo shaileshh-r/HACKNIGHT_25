@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovest Hub - Innovator Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <div class="header-left">
+                <div>
+                    <h1 class="company-name">INNOVEST HUB</h1>
+                    <p class="company-tagline">Innovate • Invest • Transform</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="forms-container">
+            <div class="form-box login">
+                <h2>Innovator Login</h2>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <label for="loginId">Enter Innovator ID</label>
+                        <input type="text" id="loginId" placeholder="Enter your Innovator ID (e.g., 12INN3456)" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="loginPassword">Enter Password</label>
+                        <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="btn">Login</button>
+                    <button type="button" class="btn back-btn" onclick="window.location.href='index.html'">
+                        <i class="fas fa-arrow-left"></i> Back to Home
+                    </button>
+                </form>
+            </div>
+
+            <div class="form-box signup">
+                <h2>Innovator Sign Up</h2>
+                <form id="signupForm">
+                    <div class="input-group">
+                        <input type="text" placeholder="Full Name" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" placeholder="Email" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="organization" placeholder="Organization/Company" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="designation" placeholder="Designation/Role" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="location" placeholder="Location (City, Country)" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="expertise" placeholder="Areas of Expertise (comma separated)" required>
+                    </div>
+                    <div class="input-group">
+                        <textarea id="bio" placeholder="Brief bio - Tell us about your experience and vision" required></textarea>
+                    </div>
+                    <div class="input-group">
+                        <input type="url" id="linkedin" placeholder="LinkedIn Profile URL (optional)">
+                    </div>
+                    <button type="submit" class="btn">Sign Up</button>
+                    <button type="button" class="btn back-btn" onclick="window.location.href='index.html'">
+                        <i class="fas fa-arrow-left"></i> Back to Home
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Already have an account? Login here.</p>
+                    <button class="btn ghost" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Innovator!</h1>
+                    <p>Don't have an account? Sign up here.</p>
+                    <button class="btn ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="innovator.js"></script>
+</body>
+</html> 

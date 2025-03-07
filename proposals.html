@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovest Hub - Proposals</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body data-theme="dark">
+    <header class="site-header">
+        <div class="header-content">
+            <div class="header-left">
+                <a href="proposals.html" class="home-icon">
+                    <i class="fas fa-home"></i>
+                </a>
+                <div>
+                    <h1 class="company-name">INNOVEST HUB</h1>
+                    <p class="company-tagline">Innovate • Invest • Transform</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn" id="submit-proposal-btn" onclick="open_proposal_modal()">Submit New Proposal</button>
+                <a href="profile.html" class="profile-icon">
+                    <i class="fas fa-user-circle"></i>
+                </a>
+                <button class="btn logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="proposals-container">
+        <div class="proposals-header">
+            <h2>Active Proposals</h2>
+        </div>
+        
+        <div class="search-filters">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Search proposals...">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="field-filter">Field:</label>
+                    <select id="field-filter">
+                        <option value="">All Fields</option>
+                        <option value="Healthcare">Healthcare</option>
+                        <option value="Clean Energy">Clean Energy</option>
+                        <option value="Agriculture">Agriculture</option>
+                        <option value="Education">Education</option>
+                        <option value="Environment">Environment</option>
+                        <option value="Legal Services">Legal Services</option>
+                        <option value="Social Justice">Social Justice</option>
+                        <option value="Sustainable Energy">Sustainable Energy</option>
+                        <option value="Professional Development">Professional Development</option>
+                        <option value="Transportation">Transportation</option>
+                        <option value="Urban Development">Urban Development</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Economic Development">Economic Development</option>
+                        <option value="Local Business Support">Local Business Support</option>
+                        <option value="AI Technology">AI Technology</option>
+                        <option value="Cultural Preservation">Cultural Preservation</option>
+                        <option value="Fair Trade">Fair Trade</option>
+                        <option value="Sustainable Transportation">Sustainable Transportation</option>
+                        <option value="Affordable Housing">Affordable Housing</option>
+                        <option value="Elder Care">Elder Care</option>
+                        <option value="Manufacturing">Manufacturing</option>
+                        <option value="Accessibility">Accessibility</option>
+                        <option value="Food Waste">Food Waste</option>
+                        <option value="Urban Planning">Urban Planning</option>
+                        <option value="Augmented Reality">Augmented Reality</option>
+                        <option value="Economic Empowerment">Economic Empowerment</option>
+                        <option value="Drone Technology">Drone Technology</option>
+                        <option value="Climate Change">Climate Change</option>
+                        <option value="Behavioral Economics">Behavioral Economics</option>
+                        <option value="Urban Food Security">Urban Food Security</option>
+                        <option value="Circular Economy">Circular Economy</option>
+                        <option value="Sustainable Fashion">Sustainable Fashion</option>
+                        <option value="Audio Technology">Audio Technology</option>
+                        <option value="Sustainable Architecture">Sustainable Architecture</option>
+                        <option value="Biotechnology">Biotechnology</option>
+                        <option value="Ocean Conservation">Ocean Conservation</option>
+                        <option value="Robotics">Robotics</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="rating-sort">Sort by Rating:</label>
+                    <select id="rating-sort">
+                        <option value="">Default</option>
+                        <option value="high-to-low">Highest to Lowest</option>
+                        <option value="low-to-high">Lowest to Highest</option>
+                    </select>
+                </div>
+                <div class="filter-group funding-range">
+                    <label for="min-funding">Funding Range:</label>
+                    <div class="range-inputs">
+                        <input type="number" id="min-funding" placeholder="Min" min="0">
+                        <span>to</span>
+                        <input type="number" id="max-funding" placeholder="Max" min="0">
+                    </div>
+                    <div class="range-slider">
+                        <input type="range" id="funding-range" min="0" max="1000000" step="10000">
+                        <div class="range-values">
+                            <span id="min-value">$0</span>
+                            <span id="max-value">$1M</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn" onclick="apply_filters()">Apply Filters</button>
+            </div>
+        </div>
+        
+        <div id="proposals-grid" class="proposals-grid">
+            <!-- Proposals will be dynamically inserted here -->
+        </div>
+    </main>
+
+    <!-- Proposal Modal -->
+    <div id="proposal-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="close_proposal_modal()">&times;</span>
+            <h2>Submit New Proposal</h2>
+            <form id="proposal-form" onsubmit="submit_proposal(event)">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="field">Field</label>
+                    <input type="text" id="field" required>
+                </div>
+                <div class="form-group">
+                    <label for="summary">Summary</label>
+                    <div class="summary-container">
+                        <textarea id="summary" required></textarea>
+                        <button type="button" class="refine-btn" onclick="refineSummary()">
+                            <i class="fas fa-magic"></i> Refine
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="impact">Impact</label>
+                    <textarea id="impact" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="funding">Funding Required ($)</label>
+                    <input type="number" id="funding" required>
+                </div>
+                <button type="submit" class="btn">Submit Proposal</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Refinement Popup Modal -->
+    <div id="refinement-modal" class="modal">
+        <div class="modal-content refinement-modal">
+            <span class="close" onclick="close_refinement_modal()">&times;</span>
+            <h2>Refined Proposal</h2>
+            <div class="refinement-container">
+                <div class="refinement-suggestions">
+                    <h3>Suggestions</h3>
+                    <div id="suggestions-container"></div>
+                </div>
+                <div class="refinement-preview">
+                    <h3>Preview</h3>
+                    <div id="refined-preview" class="refined-text"></div>
+                </div>
+            </div>
+            <div class="refinement-actions">
+                <button class="btn" onclick="apply_refinement()">Apply Changes</button>
+                <button class="btn btn-secondary" onclick="close_refinement_modal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="theme-switcher" id="theme-switcher">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <script>
+        // Theme initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.body.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        });
+
+        // Theme switching
+        document.getElementById('theme-switcher').addEventListener('click', function() {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const themes = ['dark', 'light'];
+            const currentIndex = themes.indexOf(currentTheme);
+            const nextTheme = themes[(currentIndex + 1) % themes.length];
+            
+            document.body.setAttribute('data-theme', nextTheme);
+            localStorage.setItem('theme', nextTheme);
+            updateThemeIcon(nextTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            const icon = document.querySelector('#theme-switcher i');
+            icon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+        }
+    </script>
+    <script src="proposals.js"></script>
+    <script src="common.js"></script>
+</body>
+</html> 

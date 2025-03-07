@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovest Hub - Proposal Details</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Add Web3.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+</head>
+<body data-theme="dark">
+    <header class="site-header">
+        <div class="header-content">
+            <div class="header-left">
+                <a href="proposals.html" class="home-icon">
+                    <i class="fas fa-home"></i>
+                </a>
+                <div>
+                    <h1 class="company-name">INNOVEST HUB</h1>
+                    <p class="company-tagline">Innovate • Invest • Transform</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn" id="connect-wallet-btn">Connect Wallet</button>
+                <span id="wallet-address" class="wallet-address"></span>
+                <a href="profile.html" class="profile-icon">
+                    <i class="fas fa-user-circle"></i>
+                </a>
+                <button class="btn logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="proposal-detail-container">
+        <div class="proposal-detail-card">
+            <div class="proposal-header">
+                <h2 id="proposalTitle"></h2>
+                <span class="field-tag" id="proposalField"></span>
+                <div class="rating">
+                    <span class="rating-label">AI Rating: </span>
+                    <div class="stars" id="proposalRatingStars"></div>
+                    <span class="value" id="proposalRatingValue"></span>
+                </div>
+            </div>
+            
+            <div class="proposal-content">
+                <div class="section">
+                    <h3>Summary</h3>
+                    <p id="proposalSummary"></p>
+                </div>
+                
+                <div class="section">
+                    <h3>Impact</h3>
+                    <p id="proposalImpact"></p>
+                </div>
+                
+                <div class="section">
+                    <h3>Funding Required</h3>
+                    <p id="proposalFunding"></p>
+                </div>
+                
+                <div class="section">
+                    <h3>About the Innovator</h3>
+                    <div class="innovator-info">
+                        <p><strong>Name:</strong> <span id="innovatorName"></span></p>
+                        <div class="email-container">
+                            <div class="email-left">
+                                <p><strong>Email:</strong> <span id="innovatorEmail"></span></p>
+                            </div>
+                            <div class="email-right">
+                                <p class="email-instruction">Click below to contact the innovator</p>
+                                <a href="#" class="email-link" id="email-link">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="proposal-actions">
+                <button class="btn invest-btn" id="investBtn" onclick="invest()">Invest Now</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- MetaMask Connection Modal -->
+    <div id="metamask-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="close_metamask_modal()">&times;</span>
+            <h2>Connect MetaMask Wallet</h2>
+            <div class="metamask-connection-form">
+                <div class="metamask-info">
+                    <i class="fab fa-ethereum fa-3x"></i>
+                    <p>To invest in this proposal, you need to connect your MetaMask wallet.</p>
+                    <div class="metamask-steps">
+                        <h3>How to Connect:</h3>
+                        <ol>
+                            <li>Click "Connect MetaMask" below</li>
+                            <li>If not logged in, MetaMask will open its login screen</li>
+                            <li>Enter your MetaMask password to unlock your wallet</li>
+                            <li>Select the account you want to connect</li>
+                            <li>Click "Connect" in the MetaMask popup</li>
+                        </ol>
+                    </div>
+                    <p class="metamask-note">Don't have MetaMask? <a href="https://metamask.io/download/" target="_blank">Install it here</a></p>
+                </div>
+                <button class="btn" onclick="connectMetaMask()">Connect MetaMask</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Investment Modal -->
+    <div id="investment-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="close_investment_modal()">&times;</span>
+            <h2>Make Investment</h2>
+            <div class="investment-form">
+                <div class="form-group">
+                    <label for="investment-amount">Amount (ETH)</label>
+                    <input type="number" id="investment-amount" step="0.001" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="investment-amount-usd">Amount (USD)</label>
+                    <input type="number" id="investment-amount-usd" readonly>
+                </div>
+                <div class="wallet-info">
+                    <p>Connected Wallet: <span id="connected-wallet"></span></p>
+                    <p>Balance: <span id="wallet-balance"></span> ETH</p>
+                </div>
+                <button class="btn" onclick="process_investment()">Confirm Investment</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="theme-switcher" id="theme-switcher">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <script>
+        // Theme initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.body.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        });
+
+        // Theme switching
+        document.getElementById('theme-switcher').addEventListener('click', function() {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const themes = ['dark', 'light'];
+            const currentIndex = themes.indexOf(currentTheme);
+            const nextTheme = themes[(currentIndex + 1) % themes.length];
+            
+            document.body.setAttribute('data-theme', nextTheme);
+            localStorage.setItem('theme', nextTheme);
+            updateThemeIcon(nextTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            const icon = document.querySelector('#theme-switcher i');
+            icon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+        }
+    </script>
+    <script src="proposal-detail.js"></script>
+</body>
+</html> 

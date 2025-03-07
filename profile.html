@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovest Hub - My Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body data-theme="dark">
+    <header class="site-header">
+        <div class="header-content">
+            <div class="header-left">
+                <a href="proposals.html" class="home-icon">
+                    <i class="fas fa-home"></i>
+                </a>
+                <div>
+                    <h1 class="company-name">INNOVEST HUB</h1>
+                    <p class="company-tagline">Innovate • Invest • Transform</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <a href="profile.html" class="profile-icon">
+                    <i class="fas fa-user-circle"></i>
+                </a>
+                <button class="btn logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="profile-container">
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <i class="fas fa-user-circle"></i>
+            </div>
+            <div class="profile-info">
+                <h2 id="userName">Loading...</h2>
+                <p id="userEmail" class="profile-email">Loading...</p>
+                <p id="userRole" class="profile-role">Loading...</p>
+            </div>
+        </div>
+
+        <div class="profile-stats">
+            <div class="stat-item">
+                <span class="stat-value" id="totalProposals">0</span>
+                <span class="stat-label">Total Proposals</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="totalVotes">0</span>
+                <span class="stat-label">Total Votes</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="totalInvestments">0</span>
+                <span class="stat-label">Total Investments</span>
+            </div>
+        </div>
+
+        <div class="profile-content">
+            <div class="profile-section">
+                <div class="section-header">
+                    <h3>About Me</h3>
+                    <button class="btn edit-btn" onclick="toggleEditMode()">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                </div>
+                <div class="about-me-details" id="viewMode">
+                    <p id="userBio" class="bio-text"></p>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">Investment Firm/Company:</span>
+                            <span id="userOrganization" class="detail-value"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Designation/Role:</span>
+                            <span id="userDesignation" class="detail-value"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Location:</span>
+                            <span id="userLocation" class="detail-value"></span>
+                        </div>
+                        <div class="detail-item" id="investmentFocusContainer">
+                            <span class="detail-label">Investment Focus Areas:</span>
+                            <div id="userInvestmentFocus" class="expertise-tags"></div>
+                        </div>
+                        <div class="detail-item" id="investmentRangeContainer">
+                            <span class="detail-label">Investment Range:</span>
+                            <span id="userInvestmentRange" class="detail-value"></span>
+                        </div>
+                        <div class="detail-item" id="linkedinContainer">
+                            <span class="detail-label">LinkedIn:</span>
+                            <a id="userLinkedIn" class="linkedin-link" target="_blank">
+                                <i class="fab fa-linkedin"></i> View Profile
+                            </a>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Member Since:</span>
+                            <span id="userJoinedDate" class="detail-value"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-me-form" id="editMode" style="display: none;">
+                    <div class="form-group">
+                        <label for="editBio">Bio</label>
+                        <textarea id="editBio" rows="4" placeholder="Tell us about your investment experience and interests"></textarea>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="editOrganization">Investment Firm/Company</label>
+                            <input type="text" id="editOrganization" placeholder="Your investment firm">
+                        </div>
+                        <div class="form-group">
+                            <label for="editDesignation">Designation/Role</label>
+                            <input type="text" id="editDesignation" placeholder="Your role">
+                        </div>
+                        <div class="form-group">
+                            <label for="editLocation">Location</label>
+                            <input type="text" id="editLocation" placeholder="City, Country">
+                        </div>
+                        <div class="form-group">
+                            <label for="editInvestmentFocus">Investment Focus Areas</label>
+                            <input type="text" id="editInvestmentFocus" placeholder="Comma separated values">
+                        </div>
+                        <div class="form-group">
+                            <label for="editInvestmentRange">Investment Range</label>
+                            <input type="text" id="editInvestmentRange" placeholder="e.g., $10K-$100K">
+                        </div>
+                        <div class="form-group">
+                            <label for="editLinkedIn">LinkedIn Profile URL</label>
+                            <input type="url" id="editLinkedIn" placeholder="https://linkedin.com/in/your-profile">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn save-btn" onclick="saveChanges()">
+                            <i class="fas fa-save"></i> Save Changes
+                        </button>
+                        <button class="btn cancel-btn" onclick="toggleEditMode()">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-section">
+                <h3 id="activityTitle">My Activity</h3>
+                <div id="activityList" class="activity-list">
+                    <!-- Activity items will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="theme-switcher" id="theme-switcher">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <script>
+        // Theme initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.body.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        });
+
+        // Theme switching
+        document.getElementById('theme-switcher').addEventListener('click', function() {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const themes = ['dark', 'light'];
+            const currentIndex = themes.indexOf(currentTheme);
+            const nextTheme = themes[(currentIndex + 1) % themes.length];
+            
+            document.body.setAttribute('data-theme', nextTheme);
+            localStorage.setItem('theme', nextTheme);
+            updateThemeIcon(nextTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            const icon = document.querySelector('#theme-switcher i');
+            icon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+        }
+    </script>
+    <script src="profile.js"></script>
+    <script src="common.js"></script>
+</body>
+</html> 

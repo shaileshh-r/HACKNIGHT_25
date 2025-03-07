@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovest Hub - Innovator Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <div class="header-left">
+                <a href="proposals.html" class="home-icon">
+                    <i class="fas fa-home"></i>
+                </a>
+                <div>
+                    <h1 class="company-name">INNOVEST HUB</h1>
+                    <p class="company-tagline">Innovate • Invest • Transform</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <a href="profile.html" class="profile-icon">
+                    <i class="fas fa-user-circle"></i>
+                </a>
+                <button class="btn logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="innovator-profile-container">
+        <div class="innovator-profile-card">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <span id="initials"></span>
+                </div>
+                <div class="profile-info">
+                    <h2 id="innovatorName"></h2>
+                    <p class="profile-email" id="innovatorEmail"></p>
+                </div>
+            </div>
+
+            <div class="profile-stats">
+                <div class="stat-item">
+                    <span class="stat-value" id="totalProposals">0</span>
+                    <span class="stat-label">Proposals</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="totalFunding">$0</span>
+                    <span class="stat-label">Funding Received</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="successRate">0%</span>
+                    <span class="stat-label">Success Rate</span>
+                </div>
+            </div>
+
+            <div class="profile-section">
+                <h3>About</h3>
+                <p id="innovatorBio"></p>
+            </div>
+
+            <div class="profile-section">
+                <h3>Active Proposals</h3>
+                <div id="innovatorProposals" class="proposals-grid">
+                    <!-- Proposals will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="theme-switcher" id="theme-switcher">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <script src="innovator-profile.js"></script>
+    <script src="common.js"></script>
+    <script>
+        // Theme initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.body.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        });
+
+        // Theme switching
+        document.getElementById('theme-switcher').addEventListener('click', function() {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const themes = ['dark', 'light'];
+            const currentIndex = themes.indexOf(currentTheme);
+            const nextTheme = themes[(currentIndex + 1) % themes.length];
+            
+            document.body.setAttribute('data-theme', nextTheme);
+            localStorage.setItem('theme', nextTheme);
+            updateThemeIcon(nextTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            const icon = document.querySelector('#theme-switcher i');
+            icon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+        }
+    </script>
+</body>
+</html> 
